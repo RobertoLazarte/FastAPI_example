@@ -1,3 +1,4 @@
+import os
 from starlette.responses import RedirectResponse
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
@@ -21,7 +22,7 @@ async def retorna_nome(nome: str):
 @router.post("/descubra_nome_do_admin/")
 async def descubra_nome_do_admin(key : schema.AccessKey ) :
     
-    if key.access_key != 'admin':
+    if key.access_key != os.getenv("ADMIN_USER", "admin"):
         raise HTTPException(status_code=401, detail='Access key negado.')
 
     return JSONResponse(status_code=200, content={'[INFO]': 'O nome do admin é Roberto!'})        
