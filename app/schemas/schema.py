@@ -5,7 +5,7 @@ from datetime import datetime
 class AccessKey(BaseModel):
     access_key: str
  
- class Registros(BaseModel):
+class Registros(BaseModel):
     id: int
     nome: str
     horario_consulta: datetime
